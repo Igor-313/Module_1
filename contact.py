@@ -5,7 +5,7 @@ while True:
     print("1. Create contact")
     print("2. Update contact")
     print("3. Delete contact")
-    print("4. Search contact")
+    print("4. Search contact") 
     print("5. Count contact")
     print("6. View contact")
     print("7. Exit")
@@ -25,10 +25,9 @@ while True:
 
     elif selection == "2":
         name = input("Enter the name of the contact you want to update: ")
+    #добавити input з 1. + contacts[name] + not found contact.
         if name in contacts:
             pass
-    #добавити input з 1. + contacts[name] + not found contact.
-            contacts[name]
         else:
             pass
     
