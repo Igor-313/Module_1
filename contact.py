@@ -1,7 +1,13 @@
 contacts = {}
-
-
+file = open("data.txt", "r", encoding="UTF-8")
+for line in file:
+    if line.split():
+        data = line.split(" | ")
+        contacts[data[0]] = {"name": data[0], "age": int(
+            data[1]), "email": data[2], "Mobile number": data[3].strip()}
+file.close()
 while True:
+
     try:
         print("\nContact book:\n1. Create contact\n2. Update contact\n3. Delete contact\n4. Search contact\n5. View contact\n6. Exit")
 
@@ -16,7 +22,7 @@ while True:
                 age = input("Enter age: ")
                 email = input("Enter email: ")
                 mobile_number = input("Enter mobil number: ")
-                contacts[name] = {"age": int(
+                contacts[name] = {"name": name, "age": int(
                     age), "email": email, "Mobile number": mobile_number}
                 print(f"Contact {name} successfully added")
                 file.write(f"{name} | {age} | {email} | {mobile_number} \n")
@@ -46,11 +52,11 @@ while True:
             search = False
             for name, contact in contacts.items():
                 if s_name.lower() in name.lower():
-                    print(
-                        f"Found: Name {name}, Age {age}, Mobile number {mobile_number}, Email {email}  ")
+                    print(contact["name"], contact["age"],
+                          contact["email"], contact["Mobile number"])
                     search = True
-                if not search:
-                    print(f"The contact with name: {s_name} not found")
+            if not search:
+                print(f"The contact with name: {s_name} not found")
 
         elif selection == "5":
             file = open("data.txt", "r")
@@ -65,4 +71,12 @@ while True:
         else:
             print("You chose a choice that does not exist")
     except ValueError:
+        print()
+    except FileNotFoundError:
+        print()
+    except KeyError:
+        print()
+    except NameError:
+        print()
+    except TypeError:
         print()
