@@ -37,7 +37,12 @@ while True:
             else:
                 age = input("Enter age: ")
                 email = input("Enter email: ")
+                if "@" not in email:
+                    print("Error Invalid email (missing @) try again!")
+                    continue
                 mobile_number = input("Enter mobil number: ")
+                if not (mobile_number.isdigit() and len(mobile_number) == 12):
+                    print("Error: Mobile number must contain exactly 12 digits!")
                 contacts[name] = {"name": name, "age": int(
                     age), "email": email, "Mobile number": mobile_number}
 
