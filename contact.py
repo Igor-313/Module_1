@@ -17,7 +17,7 @@ except FileNotFoundError:
 def save_data(contacts_dict):
     """Функція, яка перезаписує файл data.txt актуальними даними"""
     file = open("data.txt", "w", encoding="utf-8")
-    for name, info in contacts_dict.items():
+    for name, info in sorted(contacts_dict.items()):
         line = f"{info['name']} | {info['age']} | {info['email']} | {info['Mobile number']}\n"
         file.write(line)
     file.close()
@@ -35,15 +35,21 @@ while True:
             if name in contacts:
                 print(f"This contacts {name} already exists")
             else:
-                file = open("data.txt", "a", encoding="utf-8")
                 age = input("Enter age: ")
                 email = input("Enter email: ")
                 mobile_number = input("Enter mobil number: ")
                 contacts[name] = {"name": name, "age": int(
                     age), "email": email, "Mobile number": mobile_number}
+
+                contacts[name] = {
+                    "name": name,
+                    "age": int(age),
+                    "email": email,
+                    "Mobile number": mobile_number
+                }
+                save_data(contacts)
+
                 print(f"Contact {name} successfully added")
-                file.write(f"{name} | {age} | {email} | {mobile_number} \n")
-                file.close()
 
         elif selection == "2":
             name_s = input(
@@ -102,7 +108,7 @@ while True:
 
         elif selection == "5":
             file = open("data.txt", "r", encoding="utf-8")
-            for line in file:
+            for line in sorted(file):
                 print(line)
             file.close()
 
